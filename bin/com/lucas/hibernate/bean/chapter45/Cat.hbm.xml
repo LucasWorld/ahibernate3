@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- schema="schemaName" (1)数据库schema的名称。 catalog="catalogName" (2)数据库catalog的名称。 
+	default-cascade="cascade_style" (3)默认的级联风格。 default-access="field|property|ClassName" 
+	(4)(可选 - 默认为 property): Hibernate用来访问所有属性的策略。可以通过实现PropertyAccessor接口 自定义。 
+	default-lazy="true|false" (5) (可选 - 默认为 true): 指定了未明确注明lazy属性的Java属性和集合类， 
+	Hibernate会采取什么样的默认加载风格。 auto-import="true|false" (6)(可选 - 默认为 true): 指定我们是否可以在查询语言中使用非全限定的类名（仅限于本映射文件中的类）。 
+	package="package.name" -->
+<hibernate-mapping package="com.lucas.hibernate.bean.chapter45">
+	<class name="Cat" table="CATS" discriminator-value="C">
+		<!-- name="ClassName" (1) table="tableName" (2) discriminator-value="discriminator_value" 
+			(3) (可选 - 默认和类名一样): 一个用于区分不同的子类的值，在多态行为时使用。它可以接受的值包括 null 和 not null。 mutable="true|false" 
+			(4) (可选，默认值为true): 表明该类的实例是可变的或者不可变的。 schema="owner" (5) (可选): 覆盖在根<hibernate-mapping>元素中指定的schema名字。 
+			catalog="catalog" (6) (可选): 覆盖在根<hibernate-mapping>元素中指定的catalog名字。 proxy="ProxyInterface" 
+			(7) 指定一个接口，在延迟装载时作为代理使用。 你可以在这里使用该类自己的名字。 dynamic-update="true|false" (8) 
+			(可选, 默认为 false): 指定用于UPDATE 的SQL将会在运行时动态生成，并且只更新那些改变过的字段。 dynamic-insert="true|false" 
+			(9) (可选, 默认为 false): 指定用于INSERT的 SQL 将会在运行时动态生成，并且只包含那些非空值字段。 select-before-update="true|false" 
+			(10) polymorphism="implicit|explicit" (11) where="arbitrary sql where condition" 
+			(12) (可选) 指定一个附加的SQLWHERE 条件， 在抓取这个类的对象时会一直增加这个条件。 persister="PersisterClass" 
+			(13) batch-size="N" (14) optimistic-lock="none|version|dirty|all" (15) lazy="true|false" 
+			(16) entity-name="EntityName" (17) check="arbitrary sql check condition" 
+			(18) rowid="rowid" (19) subselect="SQL expression" (20) abstract="true|false" 
+			(21) node="element-name" -->
+		<id name="id" column="ID">
+			<generator class="native" />
+		</id>
+
+		<discriminator column="subclass" type="character" />
+
+		<property name="birthdate" column="BIRTHDAY" type="date" />
+		<property name="color" column="COLOR" />
+		<property name="sex" column="SEX" type="char" />
+		<property name="weight" column="WEIGHT" type="float" />
+		<property name="litterId" column="LITTERID" update="false" />
+		<many-to-one name="mother" column="MOTHERID" update="false" />
+		<!-- 通过many-to-one元素,可以定义一种常见的与另一个持久化类的关联。 这种关系模型是多对一关联（实际上是一个对象引用－译注）：这个表的一个外键引用目标表的 
+			主键字段。
+		name="propertyName"                                          (1)属性名。
+        column="column_name"                                         (2)(可选): 外间字段名。它也可以通过嵌套的 <column>元素指定。
+        class="ClassName"                                            (3)(可选 - 默认是通过反射得到属性类型): 关联的类的名字。
+        cascade="cascade_style"                                      (4)
+        fetch="join|select"                                          (5)
+        update="true|false"                                          (6)
+        insert="true|false"                                          (6)
+        property-ref="propertyNameFromAssociatedClass"               (7)
+        access="field|property|ClassName"                            (8)
+        unique="true|false"                                          (9)
+        not-null="true|false"                                        (10)
+        optimistic-lock="true|false"                                 (11)
+        lazy="proxy|no-proxy|false"                                  (12)
+        not-found="ignore|exception"                                 (13)(可选 - 默认为 exception): 指定外键引用的数据不存在时如何处理： ignore会将行数据不存在视为一个空（null）关联。
+        entity-name="EntityName"                                     (14)(可选): SQL表达式，用于定义computed（计算出的）外键值。
+        formula="arbitrary SQL expression"                           (15)
+        node="element-name|@attribute-name|element/@attribute|."
+
+        embed-xml="true|false"
+        index="index_name"
+        unique_key="unique_key_id"
+        foreign-key="foreign_key_name"
+		 -->
+		
+		<set name="kettens" inverse="true" order-by="litter_id">
+			<key column="MOTHERID" />
+			<one-to-many class="Cat" />
+		</set>
+
+		<subclass name="DomesticCat" discriminator-value="D">
+			<property name="name" type="string" />
+		</subclass>
+
+		<subclass name="StrayCat" discriminator-value="S">
+			<property name="home" type="string" />
+		</subclass>
+	</class>
+</hibernate-mapping>        

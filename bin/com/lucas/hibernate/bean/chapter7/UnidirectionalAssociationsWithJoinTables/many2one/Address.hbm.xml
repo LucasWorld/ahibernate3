@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping
+	package="com.lucas.hibernate.bean.chapter7.UnidirectionalAssociationsWithJoinTables.many2one">
+	<class name="Address">
+		<id name="addressid">
+			<generator class="native" />
+		</id>
+		
+		<join table="personaddress">
+			<key column="addressid"/>
+			<many-to-one name="person" class="Person"/>
+		</join>
+	</class>
+</hibernate-mapping>

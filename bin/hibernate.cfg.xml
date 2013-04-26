@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost/hibernate3</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">root</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.use_sql_comments">false</property>
+		<property name="hibernate.format_sql">true</property>
+		<!-- <property name="hibernate.default_entity_mode">dynamic-map</property> -->
+		<!-- <mapping resource="com/lucas/hibernate/bean/Blog.hbm.xml"/> <mapping 
+			resource="com/lucas/hibernate/bean/BlogItem.hbm.xml"/> -->
+		<!-- <mapping resource="com/lucas/hibernate/bean/chapter45/Customer.hbm.xml"/> 
+			<mapping resource="com/lucas/hibernate/bean/chapter45/Organization.hbm.xml"/> 
+			<mapping resource="com/lucas/hibernate/bean/chapter45/Order.hbm.xml"/> -->
+		<!-- <mapping resource="com/lucas/hibernate/bean/chapter45/Cat.hbm.xml" 
+			/> -->
+		<!-- <mapping resource="com/lucas/hibernate/bean/chapter6/Child.hbm.xml" 
+			/> <mapping resource="com/lucas/hibernate/bean/chapter6/Parent.hbm.xml" /> -->
+		<!-- <mapping resource="com/lucas/hibernate/bean/chapter7/DXone2onePK/Person.hbm.xml" 
+			/> <mapping resource="com/lucas/hibernate/bean/chapter7/DXone2onePK/Address.hbm.xml" 
+			/> -->
+
+		<!-- <mapping resource="com/lucas/hibernate/bean/chapter7/DXone2manyFK/Person.hbm.xml" 
+			/> <mapping resource="com/lucas/hibernate/bean/chapter7/DXone2manyFK/Address.hbm.xml" 
+			/> -->
+
+<!-- 		<mapping
+			resource="com/lucas/hibernate/bean/chapter7/UnidirectionalAssociationsWithJoinTables/ont2many/Person.hbm.xml" />
+		<mapping
+			resource="com/lucas/hibernate/bean/chapter7/UnidirectionalAssociationsWithJoinTables/ont2many/Address.hbm.xml" /> -->
+<!-- 			<mapping
+			resource="com/lucas/hibernate/bean/chapter7/UnidirectionalAssociationsWithJoinTables/many2many/Person.hbm.xml" />
+		<mapping
+			resource="com/lucas/hibernate/bean/chapter7/UnidirectionalAssociationsWithJoinTables/many2many/Address.hbm.xml" /> -->
+<!-- 		<mapping
+			resource="com/lucas/hibernate/bean/chapter7/UnidirectionalAssociationsWithJoinTables/many2one/Person.hbm.xml" />
+		<mapping
+			resource="com/lucas/hibernate/bean/chapter7/UnidirectionalAssociationsWithJoinTables/many2one/Address.hbm.xml" />	 -->
+		<mapping
+			resource="com/lucas/hibernate/bean/chapter7/UnidirectionalAssociationsWithJoinTables/one2one/Person.hbm.xml" />
+		<mapping
+			resource="com/lucas/hibernate/bean/chapter7/UnidirectionalAssociationsWithJoinTables/one2one/Address.hbm.xml" />
+		
+	</session-factory>
+</hibernate-configuration>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        <hibernate-mapping package="com.lucas.hibernate.bean">
+        	<class name="BlogItem" table="BLOGITEM">
+        		<id name="_id" column="BLOGITEM_ID">
+        			<generator class="native" />
+        		</id>
+        		
+        		<property name="_datetime" column="BLOGITEM_DATETIME" not-null="true" />
+        		<property name="_text" column="BLOGITEM_TEXT" not-null="true" />
+        		<property name="_title" column="BLOGITEM_TITLE" not-null="true" />
+        		<many-to-one name="_blog" column="BLOG_ID" not-null="true" />
+        	</class>
+        
+        </hibernate-mapping>
